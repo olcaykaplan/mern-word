@@ -1,0 +1,14 @@
+.container{
+    width: 70%;
+    margin: 50px auto 0 auto;
+   padding: 0;
+}
+.container h2{
+text-align: center;
+}
+.formbody{
+    border: 1px solid black;
+    box-shadow: 3px 5px 5px grey;
+    border-radius: 2px;
+    padding:  45px  30px  90px 15px ;
+}
