@@ -1,9 +1,11 @@
 import express from "express";
-import * as words from '../controllers/words.js';
+import{getWords, createWord, uploadWordsCollectively } from '../controllers/words.js';
+import  auth from '../middleware/auth.js';
+
 const router = express.Router();
 
-router.get('/', words.getWords);
-router.post('/word/newWord', words.createWord);
-router.post('/uploadWords', words.uploadWordsCollectively);
+router.get('/', getWords);
+router.post('/word/newWord', auth, createWord);
+router.post('/uploadWords',  auth, uploadWordsCollectively);
 
 export default router;

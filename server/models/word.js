@@ -5,8 +5,8 @@ const wordSchema = mongoose.Schema({
     description: String,
     examples:[String],
     likeCount: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: []
     },
     createdAt:{
         type:Date,
