@@ -4,6 +4,7 @@ const wordSchema = mongoose.Schema({
     name: String,
     description: String,
     examples:[String],
+    creator: String,
     likeCount: {
         type: [String],
         default: []

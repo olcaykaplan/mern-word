@@ -39,10 +39,11 @@ export const signup = async (req, res) => {
         const token = jwt.sign({email: result.email, id: result._id},
                         "u__x&+t8Nu87/VG}#pepPj",
                                 {expiresIn: "1h"});
-
+        console.log("signup data: ",{result, token});
         res.status(200).json({result, token});
      }
      catch (e) {
+         console.log("HATA ALINDI signup")
          res.status(500).json({message: "Something went wrong"});
      }
 }

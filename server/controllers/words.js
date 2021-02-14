@@ -12,8 +12,9 @@ export const getWords = async (req, res) => {
 }
 
 export const createWord = async (req, res) => {
+    console.log("createWord")
     const wordData = req.body;
-    const newWord = new Word(wordData);
+    const newWord = new Word({...wordData, creator:req.userId, createdAt: new Date().toISOString()});
     try {
         if(!req.userId) return res.json({message: "Unauthenticated!"});
         await newWord.save();
