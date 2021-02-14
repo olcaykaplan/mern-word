@@ -27,14 +27,19 @@ const Auth = () => {
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("form DATA",formData)
         if(isSignup){
+            console.log("signup çalıştı", formData)
             dispatch(signup(formData, history))
         }
         else{
+            console.log("signin çalıştı", formData)
             dispatch(signin(formData, history))
         }
     };
-    const handleChange = (e) => {setFormData({...formData, [e.target.name] : e.target.value})};
+    const handleChange = (e) => {
+        setFormData({...formData, [e.target.name] : e.target.value})
+    };
 
     const googleSuccess = async (res) => {
         const result  =  res?.profileObj;
@@ -64,21 +69,20 @@ const Auth = () => {
           xs={12}
           justify="center"
         >
-         <svg viewBox="0 0 1920 200" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(47, 73, 94, 1)" d="M 0 69 C 477.5 69 477.5 214 955 214 L 955 214 L 955 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(47, 73, 94, 1)" d="M 954 214 C 1437 214 1437 123 1920 123 L 1920 123 L 1920 0 L 954 0 Z" strokeWidth="0"></path> </svg>
            <Grid   xl= "6" lg="6"  md="6"  sm="8"  xs="10" className={classes.GridContainer}  >
             <Paper>
                 <form onSubmit={handleSubmit} className={classes.Form}>
                     {isSignup && (
-                        <> 
-                            <Input name={"firstName"} handeChange={handleChange} label={"First Name"} type={"text"}  autoFocus />
-                            <Input name={"lastName"} handeChange={handleChange} label={"Last Name"} type={"text"}   />
-                       </>   
-                        
+                        <>
+                            <Input name={"firstName"} handleChange={handleChange} label={"First Name"} type={"text"}  autoFocus />
+                            <Input name={"lastName"} handleChange={handleChange} label={"Last Name"} type={"text"}   />
+                       </>
+
                         )}
-                        <Input name={"email"} handeChange={handleChange} label={"Email Address"} type={"email"} />
-                        <Input name={"password"} handeChange={handleChange} label={"Password"} type={ showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                        <Input name={"email"} handleChange={handleChange} label={"Email Address"} type={"email"} />
+                        <Input name={"password"} handleChange={handleChange} label={"Password"} type={ showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                         {isSignup &&
-                            <Input name={"confirmPassword"} handeChange={handleChange} label={"Confirm Password"}
+                            <Input name={"confirmPassword"} handleChange={handleChange} label={"Confirm Password"}
                                     type={"password"} />}
                      <div className={classes.LoginSignUp}>
                     <Button type="submit"  variant="contained" color="primary">
