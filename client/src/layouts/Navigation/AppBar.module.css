@@ -1,3 +1,11 @@
+header{
+  height: 75px;
+}
+
+header div button {
+text-align: right !important;
+}
+
 .NavLink{
     color: white;
     text-decoration: none;

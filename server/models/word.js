@@ -4,9 +4,10 @@ const wordSchema = mongoose.Schema({
     name: String,
     description: String,
     examples:[String],
+    creator: String,
     likeCount: {
-        type: Number,
-        default: 0
+        type: [String],
+        default: []
     },
     createdAt:{
         type:Date,

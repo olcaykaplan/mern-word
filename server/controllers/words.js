@@ -12,12 +12,13 @@ export const getWords = async (req, res) => {
 }
 
 export const createWord = async (req, res) => {
+    console.log("createWord")
     const wordData = req.body;
-    const newWord = new Word(wordData);
-//    console.log(newWord);
+    const newWord = new Word({...wordData, creator:req.userId, createdAt: new Date().toISOString()});
     try {
+        if(!req.userId) return res.json({message: "Unauthenticated!"});
         await newWord.save();
-          res.status(200).json(wordData);
+        res.status(200).json(wordData);
     }
     catch (e){
         res.status(409).json({message: error.message});
@@ -28,6 +29,7 @@ export const uploadWordsCollectively = async (req, res) => {
     const uploadData = req.body;
     // NAME WILL BE CHECKED IT IS EXIST IN DB OR NOT
     try{
+        if(!req.userId) return res.json({message: "Unauthenticated!"})
         console.log("uploadData", uploadData);
        const data = await Word.insertMany(uploadData);
        console.log("data insertMany",data);
@@ -36,35 +38,6 @@ export const uploadWordsCollectively = async (req, res) => {
     catch (err){
         res.status(409).json({message: err.message});
     }
-
-    /*
-    const jobQuerys = [];
-
-const { category: categories, title, postDescription: description } = req.body;
-
-// save category
-categories.forEach(title => {
-  const category = new Category({ title })
-  jobQuerys.push(category.save());
-});
-
-// get all category was saved
-const categoriesResult = await Promise.all(jobQuerys);
-
-// category id temporary
-const arrCategoryId = [];
-
-// add category._id to arrCategoryId
-categoriesResult.forEach(category => {
-  arrCategoryId.push(category._id);
-});
-
-// save game with categoryId
-const game = new Game({ title, description, category: arrCategoryId });
-const result = await game.save();
-
-// show result
-console.log(result);
-
-     */
 }
+
+//LIKE wil be here
