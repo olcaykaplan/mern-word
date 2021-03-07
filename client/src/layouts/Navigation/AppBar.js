@@ -1,18 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import classes from './AppBar.module.css';
 import decode from 'jwt-decode';
 import { makeStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-//import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-// import {Button} from '@material-ui/core'
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Menu from '@material-ui/core/Menu';
 import {AppBar, Toolbar, IconButton, Button, Typography, Menu, MenuItem} from "@material-ui/core" 
    
 const useStyles = makeStyles((theme) => ({
@@ -39,11 +31,13 @@ const AppBarComponent = () => {
     const dispatch = useDispatch()
     const history = useHistory();
     const location = useLocation();
+    const classes = useStyles();
 
     const logout = () => {
         dispatch({type: 'LOGOUT'});
-        history.push('/words');
+        history.push('/auth');
         setUser(null)
+        handleClose()
     }
 
     useEffect(()=>{
@@ -54,7 +48,7 @@ const AppBarComponent = () => {
         }
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])
-    const classes = useStyles();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     
@@ -101,18 +95,14 @@ const AppBarComponent = () => {
                         open={open}
                         onClose={handleClose}
                       >
-                          <MenuItem
-                              onClick={handleClose}
-                              containerElement={<Link to="/logout" />}
-                              primaryText="Profile"
-                              // leftIcon={
-                              //     <FontIcon className="material-icons">people</FontIcon>
-                              // }
-                          >Deneme</MenuItem>
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleClose}
+                            // leftIcon={
+                            //     <FontIcon className="material-icons">people</FontIcon>
+                            // }
+                        >Profile</MenuItem>
                         <MenuItem onClick={handleClose}>My account</MenuItem>
                         <MenuItem onClick={handleClose}>My Favourite Words</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={logout}>Logout</MenuItem>
                         <Button component={Link} to={'/words'} variant="contained" size="small" color="primary">
                         Words
                     </Button>    

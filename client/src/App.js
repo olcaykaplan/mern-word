@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {getWords} from './actions/wordsAction';
-import {Switch, Route, NavLink, Link, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import {Container} from "react-bootstrap";
 
 

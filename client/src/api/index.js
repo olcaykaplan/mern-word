@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/words';
+const url = 'https://learnupwords.herokuapp.com/words';
 
 export const fetchWords = () => axios.get(url);
 export const createWord = (wordData) => axios.post(url+'/word/newWord', wordData);

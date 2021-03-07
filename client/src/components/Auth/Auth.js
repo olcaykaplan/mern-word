@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import {Container, Paper, Button, Grid, FormGroup } from "@material-ui/core";
+import { Paper, Button, Grid } from "@material-ui/core";
 import Input from '../UI Components/Input/Input';
 import GoogleLogin from "react-google-login";
 import IconGoogle from './iconGoogle';
@@ -43,15 +43,14 @@ const Auth = () => {
 
     const googleSuccess = async (res) => {
         const result  =  res?.profileObj;
-          const token = res?.tokenId;
-
-          try {
+        const token = res?.tokenId;
+        try {
             dispatch({ type:'AUTH', data: { result, token} })
-              history.push('/words');
+            history.push('/words');
           }
-          catch (e) {
-              console.log(e);
-          }
+        catch (e) {
+            console.log(e);
+        }
    };
 
    const googleFailure =  (error) => {
@@ -62,6 +61,7 @@ const Auth = () => {
     return(
         <Grid
           container
+          item
           xl={12}
           lg={12}
           md={12}
@@ -69,7 +69,7 @@ const Auth = () => {
           xs={12}
           justify="center"
         >
-           <Grid   xl= "6" lg="6"  md="6"  sm="8"  xs="10" className={classes.GridContainer}  >
+           <Grid  item xl={6} lg={6}  md={6}  sm={8}  xs={10}  className={classes.GridContainer}  >
             <Paper>
                 <form onSubmit={handleSubmit} className={classes.Form}>
                     {isSignup && (

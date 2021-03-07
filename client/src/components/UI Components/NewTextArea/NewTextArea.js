@@ -1,9 +1,8 @@
 import React from 'react';
-import {Form} from "react-bootstrap";
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import {green, red} from "@material-ui/core/colors";
+import { red} from "@material-ui/core/colors";
 import {Grid, InputLabel, TextField} from "@material-ui/core";
-const examplePlaceHolder = "";
+
 const NewTextArea = ({exampleValue, setWordState, wordState , index, removeExample} ) => {
 
         const setChange = (e) => {
