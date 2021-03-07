@@ -4,23 +4,30 @@ import dotenv from 'dotenv';
 import User from '../models/user.js';
 // dotenv.config()
 export const signin = async (req, res) => {
-   const [email, password] = req.body;
+   const {email, password} = req.body;
+    console.log("email",email);
+    console.log("password",password);
    try {
        const existingUser = await User.findOne({email});
 
-       if(!existingUser)  return res.status(400).json({message: "Invalid credentials."})
+       if(!existingUser)  {
+           console.log("Email doesnt match")
+           return res.status(400).json({message: "Invalid credentials."})}
 
-       const isPasswordCorret =  await bcrypt.compare(password, existingUser.password)
+       const isPasswordCorrect =  await bcrypt.compare(password, existingUser.password)
 
-       if(!isPasswordCorret) return  res.status(400).json({message: "Invalid credentials"})
+       if(!isPasswordCorrect) {
+           console.log("password is not correct")
+           return  res.status(400).json({message: "Invalid credentials"})}
 
        const token = jwt.sign({email : existingUser.email, id: existingUser._id},
                         "u__x&+t8Nu87/VG}#pepPj",
                                 {expiresIn: "1h"} );
-
+        console.log("existingUser",existingUser,  "token", token)
        res.status(200).json({result: existingUser, token});
    }
    catch (e) {
+       console.log("something happened",e)
        res.status(500).json({message: "Something went wrong."});
    }
 }
