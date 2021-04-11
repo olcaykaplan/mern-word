@@ -1,12 +1,15 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Paper, Button, Grid } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
+
 import Input from '../UI Components/Input/Input';
 import GoogleLogin from "react-google-login";
 import IconGoogle from './iconGoogle';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {signup, signin} from "../../actions/auth";
 import classes from './Auth.module.css'
+import {getWords} from "../../actions/wordsAction";
 
 const initialFormState= {
     firstName:'',
@@ -21,28 +24,30 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(true);
     const {showPassword, setShowPassword} = useState(false);
     const  dispatch = useDispatch()
+    let  message = useSelector((state) => {
+        return isSignup ? state.auth.registerErrorMessage : state.auth.loginErrorMessage
+    } )
     const history = useHistory();
 
     const handleAuthType = () => setIsSignup((prevAuthType) => !prevAuthType);
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("form DATA",formData)
         if(isSignup){
             console.log("signup çalıştı", formData)
             dispatch(signup(formData, history))
         }
         else{
-            console.log("signin çalıştı", formData)
             dispatch(signin(formData, history))
         }
     };
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name] : e.target.value})
     };
-
-    const googleSuccess = async (res) => {
-        const result  =  res?.profileObj;
+    useEffect(() => {
+    }, [dispatch])
+   /* const googleSuccess = async (res) => {
+       const result  =  res?.profileObj;
         const token = res?.tokenId;
         try {
             dispatch({ type:'AUTH', data: { result, token} })
@@ -56,7 +61,7 @@ const Auth = () => {
    const googleFailure =  (error) => {
             console.log(error)
             console.log("Google sign in was uncessful. Try again Later")
-   };
+   };*/
 
     return(
         <Grid
@@ -71,6 +76,10 @@ const Auth = () => {
         >
            <Grid  item xl={6} lg={6}  md={6}  sm={8}  xs={10}  className={classes.GridContainer}  >
             <Paper>
+
+                {   message ?
+                    <Alert style={{textAlign:"center"}} severity={isSignup ? "warning" : "error"}>{message}</Alert> : null}
+
                 <form onSubmit={handleSubmit} className={classes.Form}>
                     {isSignup && (
                         <>
@@ -92,8 +101,8 @@ const Auth = () => {
                         {isSignup ?  'Sign In' : 'Sign Up'}
                     </Button>
                     </div>
-                    <GoogleLogin
-                        clientId="446554799040-74lorsmc30g25o876eql2unk5gqbfoum.apps.googleusercontent.com"
+                    {/*   <GoogleLogin
+                        clientId="446554799040-kb1ec67vtibjgcu7glrnfpukoiq83blp.apps.googleusercontent.com"
                         render={(renderProps) => (
                             <Button color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<IconGoogle />} variant={"contained"}>
                             Google Sign In
@@ -102,7 +111,7 @@ const Auth = () => {
                         onSuccess={googleSuccess}
                         onFailure={googleFailure}
                         cookiePolicy={"single_host_origin"}
-                    />
+                    /> */}
                 </form>
                 </Paper>
            </Grid>
