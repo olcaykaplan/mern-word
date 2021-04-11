@@ -27,7 +27,7 @@ const App = () =>  {
                     <Route path={"/words/word/:wordID"} exact  component={WordForm} />
                     <Route path={"/words/uploadWords"} exact  component = {UploadWordsCollectively} />
                     <Route path={"/auth"} exact component={Auth} />
-                    <Redirect to={"/words"}  />
+                    <Redirect to={"/auth"}  />
                 </Switch>
             </Container>
         );
