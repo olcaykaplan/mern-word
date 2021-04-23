@@ -22,7 +22,7 @@ const initialFormState= {
 const Auth = () => {
     const[formData, setFormData] = useState(initialFormState)
     const [isSignup, setIsSignup] = useState(true);
-    const {showPassword, setShowPassword} = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const  dispatch = useDispatch()
     let  message = useSelector((state) => {
         return isSignup ? state.auth.registerErrorMessage : state.auth.loginErrorMessage
