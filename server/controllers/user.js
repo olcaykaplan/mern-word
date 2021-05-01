@@ -25,7 +25,7 @@ export const signin = async (req, res) => {
 
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
-      "u__x&+t8Nu87/VG}#pepPj",
+      `${process.SECRET_TOKEN }`,
       { expiresIn: "1h" }
     );
     console.log("existingUser", existingUser, "token", token);

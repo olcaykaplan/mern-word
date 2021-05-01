@@ -1,7 +1,8 @@
 import axios from "axios";
+import OAuth from '../OAuth2';
+const {url, authorizationPath} = OAuth;
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
-const url = "https://learnupwords.herokuapp.com/words";
+const API = axios.create({ baseURL: url });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
