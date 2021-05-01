@@ -12,7 +12,7 @@ API.interceptors.request.use((req) => {
   }
   return req;
 });
-export const fetchWords = () => API.get(url);
+export const fetchWords = () => API.get("/words");
 export const createWord = (wordData) =>
   API.post("/words/word/newWord", wordData);
 export const uploadWordsCollectively = (uploadData) =>
