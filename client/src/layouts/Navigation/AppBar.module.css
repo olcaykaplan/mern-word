@@ -1,18 +1,17 @@
-header{
+header {
   height: 75px;
 }
 
 header div button {
-text-align: right !important;
+  text-align: right !important;
 }
 
-.NavLink{
-    color: white;
-    text-decoration: none;
-    font-size: large;
-    margin: 0 5px;
+.NavLink {
+  color: white;
+  text-decoration: none;
+  font-size: large;
+  margin: 0 5px;
 }
-.Navlink:hover{
-
-    text-decoration: white;
+.Navlink:hover {
+  text-decoration: white;
 }

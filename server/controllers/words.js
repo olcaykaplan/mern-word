@@ -1,43 +1,44 @@
 import mongoose from "mongoose";
-import Word from '../models/word.js';
+import Word from "../models/word.js";
 
 export const getWords = async (req, res) => {
-    try {
-        const words = await Word.find();
-        res.status(200).json(words);
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    const words = await Word.find();
+    res.status(200).json(words);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const createWord = async (req, res) => {
-    console.log("createWord")
-    const wordData = req.body;
-    const newWord = new Word({...wordData, creator:req.userId, createdAt: new Date().toISOString()});
-    try {
-        if(!req.userId) return res.json({message: "Unauthenticated!"});
-        await newWord.save();
-        res.status(200).json(wordData);
-    }
-    catch (e){
-        res.status(409).json({message: error.message});
-    }
-}
+  console.log("createWord");
+  const wordData = req.body;
+  const newWord = new Word({
+    ...wordData,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
+  try {
+    if (!req.userId) return res.json({ message: "Unauthenticated!" });
+    await newWord.save();
+    res.status(200).json(wordData);
+  } catch (e) {
+    res.status(409).json({ message: error.message });
+  }
+};
 
 export const uploadWordsCollectively = async (req, res) => {
-    const uploadData = req.body;
-    // NAME WILL BE CHECKED IT IS EXIST IN DB OR NOT
-    try{
-        if(!req.userId) return res.json({message: "Unauthenticated!"})
-        console.log("uploadData", uploadData);
-       const data = await Word.insertMany(uploadData);
-       console.log("data insertMany",data);
-       //res.status(200);
-    }
-    catch (err){
-        res.status(409).json({message: err.message});
-    }
-}
+  const uploadData = req.body;
+  // NAME WILL BE CHECKED IT IS EXIST IN DB OR NOT
+  try {
+    if (!req.userId) return res.json({ message: "Unauthenticated!" });
+    console.log("uploadData", uploadData);
+    const data = await Word.insertMany(uploadData);
+    console.log("data insertMany", data);
+    //res.status(200);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+};
 
 //LIKE wil be here

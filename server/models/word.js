@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
 
 const wordSchema = mongoose.Schema({
-    name: String,
-    description: String,
-    examples:[String],
-    creator: String,
-    likeCount: {
-        type: [String],
-        default: []
-    },
-    createdAt:{
-        type:Date,
-        default: new Date()
-    }
+  name: String,
+  description: String,
+  examples: [String],
+  creator: String,
+  likeCount: {
+    type: [String],
+    default: [],
+  },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
-const Word = mongoose.model("Words",wordSchema);
+const Word = mongoose.model("Words", wordSchema);
 
-export default  Word;
+export default Word;
