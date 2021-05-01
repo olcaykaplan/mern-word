@@ -101,7 +101,7 @@ const AppBarComponent = () => {
                             // }
                         >Profile</MenuItem>
                         <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>My Favourite Words</MenuItem>
+                        <MenuItem component={Link} to={'/words/word/newword'} variant="contained" size="small" color="primary">New Word</MenuItem>
                         <MenuItem onClick={logout}>Logout</MenuItem>
                         <Button component={Link} to={'/words'} variant="contained" size="small" color="primary">
                         Words
