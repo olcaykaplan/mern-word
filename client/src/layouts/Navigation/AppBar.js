@@ -3,8 +3,8 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+
+import MenuList from "./MenuList";
 import {
   AppBar,
   Toolbar,
@@ -45,28 +45,13 @@ const AppBarComponent = () => {
     dispatch({ type: "LOGOUT" });
     history.push("/auth");
     setUser(null);
-    handleClose();
   };
 
   useEffect(() => {
     const token = user?.token;
-    if (token) {
-      const docededToken = decode(token);
-      if (docededToken.exp * 1000 < new Date().getTime()) logout();
-    }
-    setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <div className={classes.root}>
@@ -76,62 +61,7 @@ const AppBarComponent = () => {
             Learn<sup>UP</sup>
           </Typography>
           {user ? (
-            <div>
-              <AccountCircle />
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem
-                  onClick={handleClose}
-                  // leftIcon={
-                  //     <FontIcon className="material-icons">people</FontIcon>
-                  // }
-                >
-                  Profile
-                </MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem
-                  component={Link}
-                  to={"/words/word/newword"}
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                >
-                  New Word
-                </MenuItem>
-                <MenuItem onClick={logout}>Logout</MenuItem>
-                <Button
-                  component={Link}
-                  to={"/words"}
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                >
-                  Words
-                </Button>
-              </Menu>
-            </div>
+              <MenuList />
           ) : (
             <div>
               <Button
