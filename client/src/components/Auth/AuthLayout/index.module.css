@@ -1,0 +1,11 @@
+.imgLeft {
+  height: 45vh;
+}
+.imgRight {
+  height: 60vh;
+}
+.grids {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
