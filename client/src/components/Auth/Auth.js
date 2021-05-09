@@ -81,93 +81,69 @@ const Auth = () => {
   //test@test
   //test123**
   return (
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          {isSignup ? "Sign up" : "Sign in"}
-        </Typography>
-        {message ? (
-          <Alert
-            style={{ width: "100%", padding: "5px 10px", margin: "10px 0" }}
-            severity={isSignup ? "warning" : "error"}
-          >
-            {message}
-          </Alert>
-        ) : null}
-        <form onSubmit={handleSubmit} className={classes.form} noValidate>
-          {isSignup && (
-            <>
-              <Input
-                name={"firstName"}
-                handleChange={handleChange}
-                label={"First Name"}
-                type={"text"}
-                autoFocus
-              />
-              <Input
-                name={"lastName"}
-                handleChange={handleChange}
-                label={"Last Name"}
-                type={"text"}
-              />
-            </>
-          )}
-          <Input
-            name={"email"}
-            handleChange={handleChange}
-            label={"Email Address"}
-            type={"email"}
-          />
-          <Input
-            name={"password"}
-            handleChange={handleChange}
-            label={"Password"}
-            type={showPassword ? "text" : "password"}
-            handleShowPassword={handleShowPassword}
-          />
-          {isSignup && (
+    <Paper style={{ borderRadius: "3%" }}>
+      {message ? (
+        <Alert
+          style={{ textAlign: "center" }}
+          severity={isSignup ? "warning" : "error"}
+        >
+          {message}
+        </Alert>
+      ) : null}
+      <form onSubmit={handleSubmit} className={classes.Form}>
+        {isSignup && (
+          <>
             <Input
-              name={"confirmPassword"}
+              name={"firstName"}
               handleChange={handleChange}
-              label={"Confirm Password"}
-              type={"password"}
+              label={"First Name"}
+              type={"text"}
+              autoFocus
             />
-          )}
-
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-         />*/}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+            <Input
+              name={"lastName"}
+              handleChange={handleChange}
+              label={"Last Name"}
+              type={"text"}
+            />
+          </>
+        )}
+        <Input
+          name={"email"}
+          handleChange={handleChange}
+          label={"Email Address"}
+          type={"email"}
+        />
+        <Input
+          name={"password"}
+          handleChange={handleChange}
+          label={"Password"}
+          type={showPassword ? "text" : "password"}
+          handleShowPassword={handleShowPassword}
+        />
+        {isSignup && (
+          <Input
+            name={"confirmPassword"}
+            handleChange={handleChange}
+            label={"Confirm Password"}
+            type={"password"}
+          />
+        )}
+        <div className={classes.LoginSignUp}>
+          <Button type="submit" variant="contained" color="primary">
             {isSignup ? "Save" : "Login"}
           </Button>
-          <Grid container>
-            {/*<Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>*/}
-            <Grid item>
-              <Link  variant="body2" onClick={handleAuthType}>
-                {isSignup
-                  ? "Don't have an account? Sign Up"
-                  : "Already have an account? Sing In"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          <Button
+            onClick={handleAuthType}
+            size={"medium"}
+            variant="contained"
+            color="secondary"
+          >
+            {isSignup ? "Sign In" : "Sign Up"}
+          </Button>
+        </div>
+      </form>
+    </Paper>
   );
 };
 
