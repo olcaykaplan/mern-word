@@ -9,6 +9,7 @@
 /coverage
 
 .idea
+/.eslintcache
 
 # production
 /build
