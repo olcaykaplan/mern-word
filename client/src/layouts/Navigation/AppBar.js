@@ -43,7 +43,7 @@ const AppBarComponent = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    history.push("/auth");
+    history.push("/");
     setUser(null);
     handleClose();
   };
@@ -136,7 +136,7 @@ const AppBarComponent = () => {
             <div>
               <Button
                 component={Link}
-                to={"/auth"}
+                to={"/"}
                 variant="contained"
                 size="small"
                 color="primary"

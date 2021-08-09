@@ -6,7 +6,9 @@ const PrivateRoute = ({ Layout, DirectComponent, path }) => {
   console.log("path: ", path);
   return expireIn && expireIn > 0 ? (
     <Route path={path} exact>
+      <Layout>
         <DirectComponent />
+      </Layout>
     </Route>
   ) : (
     <Redirect to="/" exact />
