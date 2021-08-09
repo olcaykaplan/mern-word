@@ -14,7 +14,7 @@ const Word = ({ word, index, history }) => {
   };
 
   return (
-    <Grid item xs={11} sm={5} md={6} lg={4} xl={4}>
+    <Grid container xs={11} sm={5} md={6} lg={4} xl={4} justify="center">
       <Card
         bg={variant.toLowerCase()}
         key={index}
