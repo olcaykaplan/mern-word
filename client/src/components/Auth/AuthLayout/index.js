@@ -14,10 +14,9 @@ const AuthLayout = ({ children }) => (
     md={12}
     lg={12}
     xl={12}
-    style={{ backgroundColor: "rgba(254, 174, 85, 0.2)", height: "100vh" }}
+    style={{ height: "100vh" }}
   >
     <Grid item xs={12} sm={12} md={4} lg={4} xl={4} className={classes.grids}>
-      <img src={leftPoster} alt="Left Poster" className={classes.imgLeft} />
     </Grid>
     <Grid
       xs={12}
@@ -41,7 +40,6 @@ const AuthLayout = ({ children }) => (
       {children}
     </Grid>
     <Grid item xs={12} sm={12} md={4} lg={4} xl={4} className={classes.grids}>
-      <img src={rightPoster} alt="Right Poster" className={classes.imgRight} />
     </Grid>
   </Grid>
 );

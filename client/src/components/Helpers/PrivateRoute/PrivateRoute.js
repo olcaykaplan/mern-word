@@ -1,13 +1,12 @@
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ Layout, DirectComponent, path }) => {
-  const expireDate = window.localStorage.getItem("expireDate");
-  console.log("expireDate private: ", expireDate);
-  return expireDate && expireDate > 0 ? (
+  const expireIn = window.localStorage.getItem("expireIn");
+  console.log("expireIn private: ", expireIn);
+  console.log("path: ", path);
+  return expireIn && expireIn > 0 ? (
     <Route path={path} exact>
-      <Layout>
         <DirectComponent />
-      </Layout>
     </Route>
   ) : (
     <Redirect to="/" exact />

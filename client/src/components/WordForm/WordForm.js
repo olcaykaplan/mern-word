@@ -7,16 +7,17 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import words from "../../reducers/words";
 import { green } from "@material-ui/core/colors";
 import NewTextArea from "../UI Components/NewTextArea/NewTextArea";
-
-const WordForm = ({ match }) => {
+import { useParams } from "react-router";
+const WordForm = (props) => {
   const [wordState, setWordState] = useState({
     name: "",
     description: "",
     examples: [],
   });
+  let { wordID } = useParams();
   const [examples, setExamples] = useState([]);
   const dispatch = useDispatch();
-  const wordID = match.params.wordID;
+
   const wordData = useSelector((state) =>
     wordID ? state.words.find((w) => w._id == wordID) : null
   );

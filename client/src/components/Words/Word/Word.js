@@ -10,7 +10,7 @@ const Word = ({ word, index, history }) => {
   const variant = cardsColor[index % cardsColor.length];
 
   const handleClick = () => {
-    history.push(`/words/word/${word._id}`);
+    history.push(`/word/${word._id}`);
   };
 
   return (

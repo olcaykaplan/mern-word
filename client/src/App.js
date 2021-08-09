@@ -9,6 +9,7 @@ import UploadWordsCollectively from "./components/UploadWordsCollectively/Upload
 import Auth from "./components/Auth/Auth";
 import Layout from "./layouts";
 import AuthLayout from "./components/Auth/AuthLayout";
+import PrivateRoute from "./components/Helpers/PrivateRoute/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,30 +20,14 @@ const App = () => {
 
   return (
     <Switch>
-      <Route path="/words" exact>
-        <Layout>
-          <Words />
-        </Layout>
-      </Route>
-      <Route path="/words/word/newWord" exact>
-        <Layout>
-          <WordForm />
-        </Layout>
-      </Route>
-      <Route path="/words/word/:wordID" exact>
-        <Layout>
-          <WordForm />
-        </Layout>
-      </Route>
-      <Route path="/words/uploadWords" exact>
-        <Layout>
-          <UploadWordsCollectively />
-        </Layout>
-      </Route>
-      <Route path="/auth" exact>
-        <AuthLayout>
-          <Auth />
-        </AuthLayout>
+     <PrivateRoute path="/words" Layout={Layout} DirectComponent={Words} />
+      <PrivateRoute path="/words/word/newWord" Layout={Layout} DirectComponent={WordForm} />
+      <PrivateRoute path="/word/:wordID" Layout={Layout} DirectComponent={WordForm} />
+      <PrivateRoute path="/words/uploadWords" Layout={Layout} DirectComponent={UploadWordsCollectively} />
+      <Route path="/" exact>
+      <AuthLayout>
+        <Auth />
+      </AuthLayout>
       </Route>
     </Switch>
   );
