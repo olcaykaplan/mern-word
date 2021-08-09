@@ -90,6 +90,7 @@ const Auth = () => {
         <Typography component="h1" variant="h5">
           {isSignup ? "Sign up" : "Sign in"}
         </Typography>
+      
         {message ? (
           <Alert
             style={{ width: "100%", padding: "5px 10px", margin: "10px 0" }}
@@ -160,8 +161,8 @@ const Auth = () => {
             <Grid item>
               <Link  variant="body2" onClick={handleAuthType}>
                 {isSignup
-                  ? "Don't have an account? Sign Up"
-                  : "Already have an account? Sing In"}
+                  ? "Already have an account? Sing In"
+                  : "Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
