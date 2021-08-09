@@ -5,10 +5,12 @@ import {
   REGISTER_ERROR,
 } from "../constants/actionTypes";
 
-const authReducer = (state = { authData: null }, action) => {
+const authReducer = (state = { authData: null, expireIn:window.localStorage.getItem('expireIn'), }, action) => {
   switch (action.type) {
     case AUTH:
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
+      const expireIn = new Date('2012.08.10').getTime() / 1000
+      localStorage.setItem('expireIn', expireIn);
       return {
         ...state,
         authData: action?.data,
